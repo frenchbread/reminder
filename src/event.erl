@@ -50,9 +50,8 @@ cancel(Pid) ->
 
 time_to_go(TimeOut={{_,_,_},{_,_,_}}) ->
   Now = calendar:local_time(),
-  ToGo = calendar:datetime_to_gregorian_seconds(TimeOut) -
-         calendar:datetime_to_gregorian_seconds(Now),
-  Secs = if ToGo > 0 -> ToGo,
+  ToGo = calendar:datetime_to_gregorian_seconds(TimeOut) - calendar:datetime_to_gregorian_seconds(Now),
+  Secs = if ToGo > 0  -> ToGo;
             ToGo =< 0 -> 0
-  end,
+         end,
   normalize(Secs).
